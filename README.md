@@ -1,4 +1,21 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Setting up for Development
+To set up your system for development please do the following steps:
+
+Install Node
+Note: Ensure you install the additional build tools, one of the later steps in the install process. If you've already installed Node, you can mondify your installation through the Windows Settings Apps and Features "Modify" button
+Clone the repository
+git clone git@github.com:6XAM/MVP.git MVP or https://github.com/6XAM/MVP.git MVP
+cd into the project
+cd MVP
+Install npm packages
+npm install
+Note: you only need to run this on initial setup to get concurrently, which is needed for the install-all script
+Install all npm packages (including client)
+Copy config.js to server/config/config.js
+Run the desired development script
+npm run-script dev for express server and react server
+npm run-script client for react server
+npm run-script server for express server
 
 ## Available Scripts
 
