@@ -1,8 +1,13 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 function App() {
+  async function callApi() {
+    fetch("/api/hello")
+      .then((res) => console.log("Success!"))
+      .catch((err) => console.log("failed!"));
+  }
   return (
     <div className="App">
       <header className="App-header">
@@ -19,6 +24,7 @@ function App() {
           Learn React
         </a>
       </header>
+      <h3 onClick={() => callApi()}> Click to call backend</h3>
     </div>
   );
 }
