@@ -3,10 +3,6 @@ To set up your system for development please do the following steps:
 
 Install Node
 Note: Ensure you install the additional build tools, one of the later steps in the install process. If you've already installed Node,<br /> you can mondify your installation through the Windows Settings Apps and Features "Modify" button<br />
-Clone the repository<br />
-git clone git@github.com:6XAM/MVP.git MVP or https://github.com/6XAM/MVP.git MVP<br />
-cd into the project<br />
-cd MVP<br />
 Install npm packages<br />
 npm install<br />
 Note: you only need to run this on initial setup to get concurrently, which is needed for the install-all script<br />
