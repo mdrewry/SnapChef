@@ -8,4 +8,4 @@
 4. Run `npm i` to install node dependencies
 5. Run `expo start` to generate the QR code
 6. On your phone download [Expo Client](https://expo.io/tools#client) and make an account
-7. Use the Expo app to scan the QR code.
+7. Use the Expo app to scan the QR code
