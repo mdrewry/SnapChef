@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "urlRandomness": "ct-t96",
+=======
+  "urlRandomness": "2j-tad",
+>>>>>>> ddc5fdc3329488a8f11a31f9c7a4f2ed7e11b59a
   "hostType": "lan",
   "lanType": "ip",
   "dev": true,
