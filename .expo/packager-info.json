@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 4679,
-  "expoServerNgrokUrl": "https://ny-xae.anonymous.snapchef.exp.direct",
-  "packagerNgrokUrl": "https://packager.ny-xae.anonymous.snapchef.exp.direct",
-  "ngrokPid": 4704,
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null,
   "webpackServerPort": null
 }
