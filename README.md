@@ -2,7 +2,7 @@
 
 ## Setup
 
-1. Install [Node.js](https://nodejs.org/en/)
+1. Install [Node.js (Current)](https://nodejs.org/en/)
 2. Do a `git clone https://github.com/mdrewry/SnapChef.git` on your machine and then `cd` to the directory
 3. Run `npm install expo-cli --global` to install expo cli
 4. Run `npm i` to install node dependencies
