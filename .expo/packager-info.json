@@ -1,19 +1,9 @@
 {
   "devToolsPort": 19002,
-<<<<<<< HEAD
-  "expoServerPort": null,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": null,
-  "packagerNgrokUrl": null,
-  "ngrokPid": null,
-=======
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 23248,
-  "expoServerNgrokUrl": "https://2j-tad.anonymous.snapchef.exp.direct",
-  "packagerNgrokUrl": "https://packager.2j-tad.anonymous.snapchef.exp.direct",
-  "ngrokPid": 22820,
->>>>>>> ddc5fdc3329488a8f11a31f9c7a4f2ed7e11b59a
-  "webpackServerPort": null
+  "packagerPid": 4146,
+  "expoServerNgrokUrl": "https://fi-apx.anonymous.snapchef.exp.direct",
+  "packagerNgrokUrl": "https://packager.fi-apx.anonymous.snapchef.exp.direct",
+  "ngrokPid": 4235
 }
