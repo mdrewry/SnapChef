@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
@@ -6,6 +6,12 @@ import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
 
 const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "space-around",
+  },
   containerButtons: {
     marginTop: "5%",
     width: "80%",
@@ -14,7 +20,7 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
   },
-  container: {
+  containerInner: {
     width: "100%",
     backgroundColor: "#fff",
     alignItems: "center",
@@ -25,11 +31,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ImagePickerExample() {
+export default function ImagePickerExample({ navigation }) {
   const [image, setImage] = useState(null);
   useEffect(() => {
     getPermissionAsync();
   }, []);
+  if (image) {
+    navigation.navigate("listPage");
+  }
   async function getPermissionAsync() {
     if (Constants.platform.ios) {
       const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
@@ -58,14 +67,17 @@ export default function ImagePickerExample() {
   async function takePhoto() {}
   return (
     <View style={styles.container}>
-      <Text>Import image from</Text>
-      <View style={styles.containerButtons}>
-        <View style={styles.buttonWrapper}>
-          <Button title="Gallery" onPress={pickImage} />
-        </View>
-        <Text>or</Text>
-        <View style={styles.buttonWrapper}>
-          <Button title="Camera" onPress={takePhoto} />
+      <Text>Welcome to SnapChef</Text>
+      <View style={styles.containerInner}>
+        <Text>Import image from</Text>
+        <View style={styles.containerButtons}>
+          <View style={styles.buttonWrapper}>
+            <Button title="Gallery" onPress={pickImage} />
+          </View>
+          <Text>or</Text>
+          <View style={styles.buttonWrapper}>
+            <Button title="Camera" onPress={takePhoto} />
+          </View>
         </View>
       </View>
     </View>
