@@ -1,10 +1,28 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
-import { TextInput, List, Button, Card, Title } from "react-native-paper";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  ScrollView,
+  ImageBackground,
+  TouchableHighlight,
+  Linking,
+} from "react-native";
+import {
+  TextInput,
+  List,
+  Button,
+  Card,
+  Title,
+  Paragraph,
+} from "react-native-paper";
+import Recipe from "./components/Recipe";
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
+    width: "100%",
     backgroundColor: "#393e46",
   },
   searchWrapper: {
@@ -20,7 +38,7 @@ const styles = StyleSheet.create({
   },
 });
 
-function recipeListPage(props) {
+function recipeListPage({ navigation }) {
   const [recipes, setRecipes] = useState([]);
   const googleInfo = "";
   const [searchBar, setSearchBar] = useState(googleInfo);
@@ -34,6 +52,11 @@ function recipeListPage(props) {
       })
       .catch((error) => console.log(error.status));
   }
+  function visitRecipe(url) {
+    Linking.openURL(url).catch((err) =>
+      console.error("Failed loading page", err)
+    );
+  }
   return (
     <View style={styles.container}>
       <View style={styles.searchWrapper}>
@@ -42,49 +65,34 @@ function recipeListPage(props) {
           value={searchBar}
           onChangeText={(info) => setSearchBar(info)}
         />
-        <Button onPress={(e) => getRecipes(e)}>Search</Button>
+        <Button
+          style={{
+            backgroundColor: "#FFFFFF",
+            height: "100%",
+            alignItems: "center",
+            flexDirection: "row",
+          }}
+          onPress={(e) => getRecipes(e)}
+        >
+          Search
+        </Button>
       </View>
-      <ScrollView showsVerticalScrollIndicator={false}>
-        {recipes.map((r) => (
-          <View
-            style={{
-              padding: 5,
-              flexDirection: "row",
-              margin: 10,
-              borderRadius: 5,
-              backgroundColor: "#222831",
-            }}
-            key={r.recipe.label}
-          >
-            <Image
-              style={{ width: 200, height: 150, borderRadius: 5 }}
-              source={{ uri: r.recipe.image }}
-            />
-            <View
-              style={{
-                marginLeft: 5,
-                width: 100,
-                height: 150,
-                alignItems: "center",
-                borderRadius: 5,
-                backgroundColor: "#FFFFFF",
-              }}
-            >
-              <Text style={{ fontSize: 10 }}>{r.recipe.label}</Text>
-              <Text style={{ fontSize: 8 }}>
-                {parseInt(r.recipe.calories)} calories
-              </Text>
-              <Text style={{ fontSize: 8, textDecoration: "underline" }}>
-                Ingredients
-              </Text>
-              {r.recipe.ingredients.map((ingredient) => (
-                <Text key={ingredient.text} style={{ fontSize: 5 }}>
-                  {ingredient.text}
-                </Text>
-              ))}
-            </View>
-          </View>
-        ))}
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        style={{ width: "100%" }}
+      >
+        <View
+          style={{
+            width: "100%",
+            height: "100%",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
+          {recipes.map((r, i) => (
+            <Recipe recipe={r.recipe} key={i} />
+          ))}
+        </View>
       </ScrollView>
     </View>
   );
