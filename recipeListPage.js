@@ -42,7 +42,12 @@ function recipeListPage({ navigation }) {
   const [recipes, setRecipes] = useState([]);
   const googleInfo = "";
   const [searchBar, setSearchBar] = useState(googleInfo);
-  const config = {};
+  const config = {
+    recipe: {
+      appID: "42589782",
+      key: "ac119e6e01c62306b308b4232bf9403a",
+    },
+  };
   async function getRecipes() {
     await fetch(
       `https://api.edamam.com/search?q=${searchBar}&app_id=${config.recipe.appID}&app_key=${config.recipe.key}`
