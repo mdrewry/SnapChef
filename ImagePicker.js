@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { StyleSheet, Text, View, Image } from "react-native";
 import { Button } from "react-native-paper";
-import * as ImagePicker from "expo-image-picker";
+import * as imagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import Icon from "../res/SnapChefIcon.png";
+import Icon from "./res/SnapChefIcon.png";
 
 const styles = StyleSheet.create({
   container: {
@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fffc00",
     alignItems: "center",
     justifyContent: "space-around",
-    width:"100%"
+    width: "100%",
   },
   containerButtons: {
     width: "80%",
@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
   },
   image: {
     width: 300,
-    height: 300
+    height: 300,
   },
   containerInner: {
     width: "100%",
@@ -35,13 +35,13 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ImagePickerExample({ navigation }) {
+export default function ImagePicker({ navigation }) {
   const [image, setImage] = useState(null);
   useEffect(() => {
     getPermissionAsync();
   }, []);
   if (image) {
-    navigation.navigate("listPage");
+    navigation.navigate("listPage", { image: image });
   }
   async function getPermissionAsync() {
     if (Constants.platform.ios) {
@@ -53,8 +53,8 @@ export default function ImagePickerExample({ navigation }) {
   }
   async function pickImage() {
     try {
-      let result = await ImagePicker.launchImageLibraryAsync({
-        mediaTypes: ImagePicker.MediaTypeOptions.All,
+      let result = await imagePicker.launchImageLibraryAsync({
+        mediaTypes: imagePicker.MediaTypeOptions.All,
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
@@ -68,18 +68,24 @@ export default function ImagePickerExample({ navigation }) {
       console.log(E);
     }
   }
-  async function takePhoto() {}
+  function takePhoto() {
+    navigation.navigate("cameraView");
+  }
   return (
     <View style={styles.container}>
-      <Image style={styles.image} source={Icon}/>
+      <Image style={styles.image} source={Icon} />
       <View style={styles.containerInner}>
         <View style={styles.containerButtons}>
           <View style={styles.buttonWrapper}>
-            <Button mode="outlined" color="#FFFFFF" onPress={pickImage} >Gallery</Button>
+            <Button mode="outlined" color="#000000" onPress={pickImage}>
+              Gallery
+            </Button>
           </View>
           <Text>or</Text>
           <View style={styles.buttonWrapper}>
-            <Button mode="outlined" color="#FFFFFF" onPress={takePhoto} >Camera</Button>
+            <Button mode="outlined" color="#000000" onPress={takePhoto}>
+              Camera
+            </Button>
           </View>
         </View>
       </View>

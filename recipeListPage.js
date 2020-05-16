@@ -38,7 +38,9 @@ const styles = StyleSheet.create({
   },
 });
 
-function recipeListPage({ navigation }) {
+function recipeListPage({ navigation, route }) {
+  const [image, setImage] = useState(route.params);
+  console.log(image);
   const [recipes, setRecipes] = useState([]);
   const googleInfo = "";
   const [searchBar, setSearchBar] = useState(googleInfo);

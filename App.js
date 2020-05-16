@@ -4,8 +4,9 @@ import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
-import ImagePicker from "./components/ImagePicker";
+import ImagePicker from "./ImagePicker";
 import recipeListPage from "./recipeListPage";
+import cameraView from "./CameraView";
 import recipePage from "./recipePage";
 import ErrorBoundary from "react-native-error-boundary";
 
@@ -24,6 +25,13 @@ export default function App() {
             <Stack.Screen
               name="imagePicker"
               component={ImagePicker}
+              options={{
+                headerShown: false,
+              }}
+            />
+            <Stack.Screen
+              name="cameraView"
+              component={cameraView}
               options={{
                 headerShown: false,
               }}
