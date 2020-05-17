@@ -58,12 +58,12 @@ export default function ImagePicker({ navigation }) {
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
+        base64 : true
       });
       if (!result.cancelled) {
-        setImage(result.uri);
+        setImage(result.base64);
       }
 
-      console.log(result);
     } catch (E) {
       console.log(E);
     }

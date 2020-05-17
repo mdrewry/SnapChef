@@ -39,8 +39,8 @@ const styles = StyleSheet.create({
 });
 
 function recipeListPage({ navigation, route }) {
-  const [image, setImage] = useState(route.params);
-  console.log(image);
+  const {image} = route.params;
+
   const [recipes, setRecipes] = useState([]);
   const googleInfo = "";
   const [searchBar, setSearchBar] = useState(googleInfo);
@@ -50,6 +50,54 @@ function recipeListPage({ navigation, route }) {
       key: "ac119e6e01c62306b308b4232bf9403a",
     },
   };
+
+  async function callGoogleAPI()
+  {
+
+    let body = JSON.stringify({
+      requests: [
+        {
+          features: [
+            { type: "LABEL_DETECTION", maxResults: 10 },
+            { type: "LANDMARK_DETECTION", maxResults: 5 },
+            { type: "FACE_DETECTION", maxResults: 5 },
+            { type: "LOGO_DETECTION", maxResults: 5 },
+            { type: "TEXT_DETECTION", maxResults: 5 },
+            { type: "DOCUMENT_TEXT_DETECTION", maxResults: 5 },
+            { type: "SAFE_SEARCH_DETECTION", maxResults: 5 },
+            { type: "IMAGE_PROPERTIES", maxResults: 5 },
+            { type: "CROP_HINTS", maxResults: 5 },
+            { type: "WEB_DETECTION", maxResults: 5 }
+          ],
+          image: {
+            content: image
+              
+          }
+        }
+      ]
+    }); 
+
+    const response = await fetch( 
+      "https://vision.googleapis.com/v1/images:annotate?key=XXXXX",
+      {
+        headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json"
+        },
+        method: "POST",
+        body: body
+      }
+    );
+      
+    const results = await response.json();
+
+    console.log(results);
+
+    
+  }
+
+
+
   async function getRecipes() {
     await fetch(
       `https://api.edamam.com/search?q=${searchBar}&app_id=${config.recipe.appID}&app_key=${config.recipe.key}`
@@ -79,7 +127,7 @@ function recipeListPage({ navigation, route }) {
             alignItems: "center",
             flexDirection: "row",
           }}
-          onPress={(e) => getRecipes(e)}
+          onPress={(e) => callGoogleAPI(e)}
         >
           Search
         </Button>
