@@ -1,13 +1,11 @@
 import "react-native-gesture-handler";
 import React, { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { DefaultTheme, Provider as PaperProvider } from "react-native-paper";
-import ImagePicker from "./ImagePicker";
-import recipeListPage from "./recipeListPage";
-import cameraView from "./CameraView";
-import recipePage from "./recipePage";
+import ImagePicker from "./pages/ImagePicker";
+import recipeListPage from "./pages/recipeListPage";
+import cameraView from "./pages/CameraView";
 import ErrorBoundary from "react-native-error-boundary";
 
 const theme = {
