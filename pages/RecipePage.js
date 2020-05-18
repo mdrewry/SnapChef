@@ -64,19 +64,19 @@ function recipeListPage({ navigation, route }) {
 
     const result = await response.json();
     const resultArr = await result.responses[0].localizedObjectAnnotations;
-    console.log(resultArr);
-    resultArr
-      .filter((obj) => {
-        return (
-          obj.name != "Packaged goods" &&
-          obj.name != "Food" &&
-          obj.name != "Vegetable"
-        );
-      })
-      .map((obj) => {
-        console.log(obj.name);
-        setSearchBar(searchBar + obj.name);
-      });
+    if (resultArr.length > 0) {
+      resultArr
+        .filter((obj) => {
+          return (
+            obj.name != "Packaged goods" &&
+            obj.name != "Food" &&
+            obj.name != "Vegetable"
+          );
+        })
+        .map((obj) => {
+          setSearchBar(searchBar + obj.name);
+        });
+    }
   }
 
   async function getRecipes() {
