@@ -23,7 +23,7 @@ export default function CameraView({ navigation }) {
     if (camera) {
       let options = { base64: true };
       let photo = await camera.takePictureAsync(options);
-      navigation.navigate("listPage", { image: photo.base64 });
+      navigation.navigate("recipePage", { image: photo.base64 });
     }
   }
   return (

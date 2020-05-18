@@ -25,17 +25,24 @@ function Recipe({ recipe, i }) {
         width: "80%",
         alignItems: "center",
         margin: 10,
-        borderRadius: 10,
+        borderRadius: 25,
       }}
     >
       <ImageBackground
         style={{
           width: "100%",
           height: 300,
+          borderRadius: 25,
+          overflow: "hidden",
         }}
         source={{ uri: recipe.image }}
       >
-        <View style={{ backgroundColor: "#FFFFFF80", height: "100%" }}>
+        <View
+          style={{
+            backgroundColor: "#FFFFFF80",
+            height: "100%",
+          }}
+        >
           <Title
             style={{
               marginLeft: 5,
@@ -88,15 +95,26 @@ function Recipe({ recipe, i }) {
               zIndex: 5,
             }}
           >
-            <Image
+            <View
               style={{
-                width: 20,
-                height: 20,
+                width: 40,
+                height: 40,
+                borderRadius: 20,
+                backgroundColor: "#FFFFFF",
                 marginBottom: 10,
                 marginRight: 10,
+                alignItems: "center",
+                justifyContent: "center",
               }}
-              source={LinkImage}
-            ></Image>
+            >
+              <Image
+                style={{
+                  width: 20,
+                  height: 20,
+                }}
+                source={LinkImage}
+              ></Image>
+            </View>
           </View>
         </View>
       </ImageBackground>

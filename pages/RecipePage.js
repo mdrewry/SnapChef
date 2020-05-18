@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, ScrollView, Linking } from "react-native";
+import { StyleSheet, View, ScrollView, Text } from "react-native";
 import { TextInput, Button } from "react-native-paper";
 import Recipe from "../components/Recipe";
 import config from "../config";
@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     width: "100%",
-    backgroundColor: "#393e46",
+    backgroundColor: "#fffc00",
   },
   searchWrapper: {
     flexDirection: "row",
@@ -20,6 +20,7 @@ const styles = StyleSheet.create({
   },
   filter: {
     width: "70%",
+    backgroundColor: "#FFFFFF",
   },
 });
 
@@ -96,8 +97,8 @@ function recipeListPage({ navigation, route }) {
           onChangeText={(info) => setSearchBar(info)}
         />
         <Button
+          mode="outlined"
           style={{
-            backgroundColor: "#FFFFFF",
             height: "100%",
             alignItems: "center",
             flexDirection: "row",
@@ -107,23 +108,30 @@ function recipeListPage({ navigation, route }) {
           Search
         </Button>
       </View>
-      <ScrollView
-        showsVerticalScrollIndicator={false}
-        style={{ width: "100%" }}
-      >
-        <View
-          style={{
-            width: "100%",
-            height: "100%",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
+      {recipes.length == 0 && (
+        <Text style={{ marginTop: 100, fontSize: 12 }}>
+          Enter ingredients seperated by comma and Search!
+        </Text>
+      )}
+      {recipes.length != 0 && (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          style={{ width: "100%" }}
         >
-          {recipes.map((r, i) => (
-            <Recipe recipe={r.recipe} key={i} />
-          ))}
-        </View>
-      </ScrollView>
+          <View
+            style={{
+              width: "100%",
+              height: "100%",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          >
+            {recipes.map((r, i) => (
+              <Recipe recipe={r.recipe} key={i} />
+            ))}
+          </View>
+        </ScrollView>
+      )}
     </View>
   );
 }

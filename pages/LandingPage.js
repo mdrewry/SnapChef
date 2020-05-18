@@ -41,7 +41,7 @@ export default function ImagePicker({ navigation }) {
     getPermissionAsync();
   }, []);
   if (image) {
-    navigation.navigate("listPage", { image: image });
+    navigation.navigate("recipePage", { image: image });
   }
   async function getPermissionAsync() {
     if (Constants.platform.ios) {
