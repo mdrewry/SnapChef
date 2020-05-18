@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import {
-  StyleSheet,
   View,
   Image,
   ImageBackground,
@@ -8,7 +7,7 @@ import {
   Linking,
 } from "react-native";
 import { Title, Paragraph } from "react-native-paper";
-import LinkImage from "../helpers/link.png";
+import LinkImage from "../res/link.png";
 
 function Recipe({ recipe, i }) {
   function visitRecipe(url) {
