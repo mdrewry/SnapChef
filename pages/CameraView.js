@@ -21,8 +21,9 @@ export default function CameraView({ navigation }) {
   }
   async function takePhoto() {
     if (camera) {
-      let photo = await camera.takePictureAsync();
-      navigation.navigate("listPage", { image: photo });
+      let options = { base64: true };
+      let photo = await camera.takePictureAsync(options);
+      navigation.navigate("recipePage", { image: photo.base64 });
     }
   }
   return (
