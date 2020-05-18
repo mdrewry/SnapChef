@@ -26,26 +26,21 @@ const styles = StyleSheet.create({
 function recipeListPage({ navigation, route }) {
   const { image } = route.params;
   const [recipes, setRecipes] = useState([]);
-  const googleInfo = "";
-  const [searchBar, setSearchBar] = useState(googleInfo);
-  if (image) {
-    callGoogleAPI();
-  }
+  const [searchBar, setSearchBar] = useState("");
+  useEffect(() => {
+    if (image) {
+      callGoogleAPI();
+    }
+  }, []);
   async function callGoogleAPI() {
     let body = JSON.stringify({
       requests: [
         {
           features: [
-            { type: "LABEL_DETECTION", maxResults: 10 },
-            { type: "LANDMARK_DETECTION", maxResults: 5 },
-            { type: "FACE_DETECTION", maxResults: 5 },
-            { type: "LOGO_DETECTION", maxResults: 5 },
-            { type: "TEXT_DETECTION", maxResults: 5 },
-            { type: "DOCUMENT_TEXT_DETECTION", maxResults: 5 },
-            { type: "SAFE_SEARCH_DETECTION", maxResults: 5 },
-            { type: "IMAGE_PROPERTIES", maxResults: 5 },
-            { type: "CROP_HINTS", maxResults: 5 },
-            { type: "WEB_DETECTION", maxResults: 5 },
+            {
+              maxResults: 10,
+              type: "OBJECT_LOCALIZATION",
+            },
           ],
           image: {
             content: image,
@@ -66,9 +61,21 @@ function recipeListPage({ navigation, route }) {
       }
     );
 
-    const results = await response.json();
-
-    console.log(results);
+    const result = await response.json();
+    const resultArr = await result.responses[0].localizedObjectAnnotations;
+    console.log(resultArr);
+    resultArr
+      .filter((obj) => {
+        return (
+          obj.name != "Packaged goods" &&
+          obj.name != "Food" &&
+          obj.name != "Vegetable"
+        );
+      })
+      .map((obj) => {
+        console.log(obj.name);
+        setSearchBar(searchBar + obj.name);
+      });
   }
 
   async function getRecipes() {
@@ -79,11 +86,6 @@ function recipeListPage({ navigation, route }) {
         response.json().then((data) => setRecipes(data.hits));
       })
       .catch((error) => console.log(error.status));
-  }
-  function visitRecipe(url) {
-    Linking.openURL(url).catch((err) =>
-      console.error("Failed loading page", err)
-    );
   }
   return (
     <View style={styles.container}>
