@@ -25,11 +25,12 @@ const styles = StyleSheet.create({
 
 function recipeListPage({ navigation, route }) {
   const { image } = route.params;
-
   const [recipes, setRecipes] = useState([]);
   const googleInfo = "";
   const [searchBar, setSearchBar] = useState(googleInfo);
-
+  if (image) {
+    callGoogleAPI();
+  }
   async function callGoogleAPI() {
     let body = JSON.stringify({
       requests: [
@@ -54,7 +55,7 @@ function recipeListPage({ navigation, route }) {
     });
 
     const response = await fetch(
-      `https://vision.googleapis.com/v1/images:annotate?key=${config.googleAPI.key}`,
+      `https://vision.googleapis.com/v1/images:annotate?key=${config.googleVisionAPI.key}`,
       {
         headers: {
           Accept: "application/json",
@@ -99,7 +100,7 @@ function recipeListPage({ navigation, route }) {
             alignItems: "center",
             flexDirection: "row",
           }}
-          onPress={(e) => callGoogleAPI(e)}
+          onPress={(e) => getRecipes(e)}
         >
           Search
         </Button>

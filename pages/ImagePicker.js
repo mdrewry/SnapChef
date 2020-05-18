@@ -4,7 +4,7 @@ import { Button } from "react-native-paper";
 import * as imagePicker from "expo-image-picker";
 import Constants from "expo-constants";
 import * as Permissions from "expo-permissions";
-import Icon from "./res/SnapChefIcon.png";
+import Icon from "../res/SnapChefIcon.png";
 
 const styles = StyleSheet.create({
   container: {
@@ -58,12 +58,11 @@ export default function ImagePicker({ navigation }) {
         allowsEditing: true,
         aspect: [4, 3],
         quality: 1,
-        base64 : true
+        base64: true,
       });
       if (!result.cancelled) {
         setImage(result.base64);
       }
-
     } catch (E) {
       console.log(E);
     }
